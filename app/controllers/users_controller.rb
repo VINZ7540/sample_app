@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
+
     else
       render 'edit'
     end
@@ -51,6 +52,10 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
+    
+    # Before filters
+    
+    # Confirms a logged-in user.
     
     def logged_in_user
       unless logged_in?
